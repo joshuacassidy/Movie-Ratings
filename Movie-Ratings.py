@@ -9,9 +9,11 @@ movies.Film = movies.Film.astype('category')
 movies.Genre = movies.Genre.astype('category')
 movies.Year = movies.Year.astype('category')
 
-audienceDistribution = sns.distplot(movies.AudienceRating, bins=15)
-criticDistribution = sns.distplot(movies.CriticRating, bins=15)
+distribution = [movies.CriticRating ,movies.AudienceRating]
+for i in distribution:
+    dist = sns.distplot(i, bins=15)
 plt.show()
+
 
 f, axes = plt.subplots(2,2, figsize=(12,8))
 #plot [0,0]
