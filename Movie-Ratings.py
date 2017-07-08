@@ -50,7 +50,7 @@ def MovieBudgetDistribution():
     fig,ax = plt.subplots()
     plt.hist(listOfMovies,bins=30, stacked=True,rwidth=1, label=mylabels)
     plt.title("Movie Budget Distribution", fontsize=25,color="Gray",fontname="Impact")
-    plt.legend(prop={'size':12})
+    plt.legend(prop={'size':12},frameon=True,fancybox=True,shadow=True, framealpha=1)
     plt.show()
 
 AudienceAndCriticRating()
