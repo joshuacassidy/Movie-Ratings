@@ -9,11 +9,15 @@ movies.Film = movies.Film.astype('category')
 movies.Genre = movies.Genre.astype('category')
 movies.Year = movies.Year.astype('category')
 
-distribution = [movies.CriticRating ,movies.AudienceRating]
-for i in distribution:
-    dist = sns.distplot(i, bins=15)
-plt.show()
+distribution = [movies.AudienceRating,movies.CriticRating]
+sns.set_style("white")
 
+def histr(i):
+    fullDistribution = sns.distplot(i, bins=15)
+    plt.yticks(fullDistribution.get_yticks(), fullDistribution.get_yticks() * 1000) 
+[histr(i)  for i in distribution] 
+
+plt.show()
 
 f, axes = plt.subplots(2,2, figsize=(12,8))
 #plot [0,0]
