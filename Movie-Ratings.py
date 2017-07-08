@@ -12,35 +12,38 @@ movies.Year = movies.Year.astype('category')
 distribution = [movies.AudienceRating,movies.CriticRating]
 sns.set_style("white")
 
-def histr(i):
+def hist(i):
     fullDistribution = sns.distplot(i, bins=15)
-    plt.yticks(fullDistribution.get_yticks(), fullDistribution.get_yticks() * 1000) 
-[histr(i)  for i in distribution]
+    plt.yticks(fullDistribution.get_yticks(), fullDistribution.get_yticks() * 1000)
+    plt.ylabel('Distribution [%]', fontsize=16)
+    plt.xlabel('Audience and Critic Rating [%]', fontsize=16)
+
+[hist(i)  for i in distribution]
 
 plt.show()
 
-f, axes = plt.subplots(2,2, figsize=(12,8))
-#plot [0,0]
+# f, axes = plt.subplots(2,2, figsize=(12,8))
+# #plot [0,0]
 
-kdeAudienceBudget = sns.kdeplot(movies.BudgetMillions , movies.AudienceRating, ax=axes[0,0])
+# kdeAudienceBudget = sns.kdeplot(movies.BudgetMillions , movies.AudienceRating, ax=axes[0,0])
 
-#plot [0,1]
-kdeCriticBudget = sns.kdeplot(movies.BudgetMillions , movies.CriticRating, ax=axes[0,1])
+# #plot [0,1]
+# kdeCriticBudget = sns.kdeplot(movies.BudgetMillions , movies.CriticRating, ax=axes[0,1])
 
-#plot [1,0]
-violinYearBudget = sns.violinplot(data=movies, x = 'Year', y='BudgetMillions', ax=axes[1,0])
+# #plot [1,0]
+# violinYearBudget = sns.violinplot(data=movies, x = 'Year', y='BudgetMillions', ax=axes[1,0])
 
-#plot [1,1]
-kdeCriticAudience = sns.kdeplot(movies.CriticRating,movies.AudienceRating,ax=axes[1,1])
+# #plot [1,1]
+# kdeCriticAudience = sns.kdeplot(movies.CriticRating,movies.AudienceRating,ax=axes[1,1])
 
-plt.show()
+# plt.show()
 
-list1 = list()
-mylabels = list()
-for gen in movies.Genre.cat.categories:
-    list1.append(movies[movies.Genre == gen].BudgetMillions)
+# list1 = list()
+# mylabels = list()
+# for gen in movies.Genre.cat.categories:
+#     list1.append(movies[movies.Genre == gen].BudgetMillions)
     
-fig,ax = plt.subplots()
-h = plt.hist(list1,bins=30, stacked=True,rwidth=1, label=mylabels)
-plt.legend(prop={'size':12})
-plt.show()
+# fig,ax = plt.subplots()
+# h = plt.hist(list1,bins=30, stacked=True,rwidth=1, label=mylabels)
+# plt.legend(prop={'size':12})
+# plt.show()
