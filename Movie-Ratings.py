@@ -9,9 +9,6 @@ distribution = [movies.AudienceRating,movies.CriticRating]
 listOfMovies = list()
 mylabels = list()
 
-def showGraph():    
-    plt.show()
-
 def Hist(i):
     fullDistribution = sns.distplot(i, bins=15)
     plt.yticks(fullDistribution.get_yticks(), fullDistribution.get_yticks() * 1000)
@@ -22,8 +19,7 @@ def Hist(i):
 def AudienceAndCriticRating():
     sns.set_style("white")
     [Hist(i)  for i in distribution]
-    showGraph()
-
+    plt.show()
 
 def FacetGrid():
     sns.set_style("dark",{"axes.facecolor":"black"})
@@ -33,12 +29,11 @@ def FacetGrid():
     sns.kdeplot(movies.CriticRating,movies.AudienceRating,shade=True,shade_lowest=False,cmap='Blues_r',ax=axes[1,1])
     sns.kdeplot(movies.CriticRating,movies.AudienceRating,cmap='gist_gray_r', ax=axes[1,1])
     plt.gcf().canvas.set_window_title('Facet Grid')
-    showGraph()
+    plt.show()
 
 def Kde(i,axes):
     sns.kdeplot(movies.BudgetMillions , distribution[i], ax=axes[0,i],shade=True, shade_lowest=True,cmap='inferno')
     sns.kdeplot(movies.BudgetMillions , distribution[i],ax=axes[0,i],cmap='cool')
-
 
 def budget(gen):
     listOfMovies.append(movies[movies.Genre == gen].BudgetMillions)
@@ -50,7 +45,12 @@ def MovieBudgetDistribution():
     fig,ax = plt.subplots()
     plt.hist(listOfMovies,bins=30, stacked=True,rwidth=1, label=mylabels)
     plt.title("Movie Budget Distribution", fontsize=25,color="Gray",fontname="Impact")
+    plt.xlabel("Number of Movies",fontsize=17,color="Red")
+    plt.ylabel("Budget in millions",fontsize=17,color="Green")
+    plt.yticks(fontsize=15)
+    plt.xticks(fontsize=15)
     plt.legend(prop={'size':12},frameon=True,fancybox=True,shadow=True, framealpha=1)
+    plt.gcf().canvas.set_window_title('Movie Budget Distribution')
     plt.show()
 
 AudienceAndCriticRating()
