@@ -15,7 +15,7 @@ sns.set_style("white")
 def histr(i):
     fullDistribution = sns.distplot(i, bins=15)
     plt.yticks(fullDistribution.get_yticks(), fullDistribution.get_yticks() * 1000) 
-[histr(i)  for i in distribution] 
+[histr(i)  for i in distribution]
 
 plt.show()
 
