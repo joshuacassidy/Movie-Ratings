@@ -9,6 +9,7 @@ distribution = [movies.AudienceRating,movies.CriticRating]
 listOfMovies = list()
 mylabels = list()
 
+#Showing the distributions of the audience and critic ratings, the critic ratings give a more uniform distribution which implies they have an checklist (e.g plot, atmosphere,lighting etc.) wheres the audience ratings give more of a normal distribution which implies the audience is rating movies base on emotion
 def Hist(i):
     fullDistribution = sns.distplot(i, bins=15)
     plt.yticks(fullDistribution.get_yticks(), fullDistribution.get_yticks() * 1000)
@@ -21,6 +22,7 @@ def AudienceAndCriticRating():
     [Hist(i)  for i in distribution]
     plt.show()
 
+#A facet grid that contains a violin plot that plots the movies budget against the year of creation, a kde plot which plots the relationdship between critic and audience ratings and two more kde plots which plot the audience and critic's ratings incomparison to the budget of the films.
 def FacetGrid():
     sns.set_style("dark",{"axes.facecolor":"black"})
     f, axes = plt.subplots(2,2, figsize=(12,8))
@@ -39,6 +41,7 @@ def budget(gen):
     listOfMovies.append(movies[movies.Genre == gen].BudgetMillions)
     mylabels.append(gen)
 
+#Showing the distribution between a movies budget and the number of movies created
 def MovieBudgetDistribution():
     sns.set_style("whitegrid",{"axes.facecolor":"white"})
     [budget(gen) for gen in movies.Genre.cat.categories]
