@@ -26,19 +26,25 @@ def AudienceAndCriticRating():
     [Hist(i)  for i in distribution]
     showGraph()
 
+sns.set_style("dark",{"axes.facecolor":"black"})
 f, axes = plt.subplots(2,2, figsize=(12,8))
 #plot [0,0]
 
-kdeAudienceBudget = sns.kdeplot(movies.BudgetMillions , movies.AudienceRating, ax=axes[0,0])
+sns.set_style("dark",{"axes.facecolor":"black"})
+
+kdeAudienceBudget = sns.kdeplot(movies.BudgetMillions , movies.AudienceRating, ax=axes[0,0], shade=True, shade_lowest=True,cmap='inferno')
+kdeAudienceBudgetOutline = sns.kdeplot(movies.BudgetMillions , movies.AudienceRating, ax=axes[0,0],cmap='cool')
 
 #plot [0,1]
-kdeCriticBudget = sns.kdeplot(movies.BudgetMillions , movies.CriticRating, ax=axes[0,1])
+kdeCriticBudget = sns.kdeplot(movies.BudgetMillions , movies.CriticRating, ax=axes[0,1], shade=True, shade_lowest=True,cmap='inferno')
+kdeCriticBudgetOutline = sns.kdeplot(movies.BudgetMillions , movies.CriticRating, ax=axes[0,1],cmap='cool')
 
 #plot [1,0]
-violinYearBudget = sns.violinplot(data=movies, x = 'Year', y='BudgetMillions', ax=axes[1,0])
+violinYearBudget = sns.violinplot(data=movies, x = 'Year', y='BudgetMillions', ax=axes[1,0],palette="YlOrRd")
 
 #plot [1,1]
-kdeCriticAudience = sns.kdeplot(movies.CriticRating,movies.AudienceRating,ax=axes[1,1])
+kdeCriticAudience = sns.kdeplot(movies.CriticRating,movies.AudienceRating,shade=True,shade_lowest=False,cmap='Blues_r',ax=axes[1,1])
+kdeCriticAudienceOutline = sns.kdeplot(movies.CriticRating,movies.AudienceRating,cmap='gist_gray_r', ax=axes[1,1])
 
 plt.show()
 
@@ -52,4 +58,4 @@ h = plt.hist(list1,bins=30, stacked=True,rwidth=1, label=mylabels)
 plt.legend(prop={'size':12})
 plt.show()
 
-AudienceAndCriticRating()
+# AudienceAndCriticRating()
